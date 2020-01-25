@@ -25,7 +25,7 @@
     "lint": "eslint . --ext .js,.ts",
     "postbundle": "del compiled && cp-cli ./index.js ./dist/index.js",
     "postversion": "git push && git push --tags && npm publish",
-    "release": "npm version -m 'Release v%s'",
+    "release": "npm run version -m 'Release v%s'",
     "test": "run-s check:* lint build test:*",
     "test:cjs": "jest --config ./scripts/jest/config.cjs.js",
     "test:cjsprod": "cross-env NODE_ENV=production jest --config ./scripts/jest/config.cjs.js",
