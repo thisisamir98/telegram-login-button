@@ -1,21 +1,21 @@
 {
   "dist/telegram-login-button.cjs.development.js": {
-    "bundled": 2057,
+    "bundled": 2080,
     "minified": 1341,
-    "gzipped": 627
+    "gzipped": 629
   },
   "dist/telegram-login-button.cjs.production.js": {
-    "bundled": 1696,
-    "minified": 1022,
-    "gzipped": 527
+    "bundled": 1721,
+    "minified": 1024,
+    "gzipped": 530
   },
   "dist/telegram-login-button.esm.js": {
-    "bundled": 1860,
+    "bundled": 1883,
     "minified": 1190,
-    "gzipped": 574,
+    "gzipped": 576,
     "treeshaked": {
       "rollup": {
-        "code": 183,
+        "code": 181,
         "import_statements": 75
       },
       "webpack": {
@@ -24,13 +24,13 @@
     }
   },
   "dist/telegram-login-button.umd.development.js": {
-    "bundled": 2563,
+    "bundled": 2594,
     "minified": 1356,
-    "gzipped": 684
+    "gzipped": 687
   },
   "dist/telegram-login-button.umd.production.js": {
-    "bundled": 2055,
-    "minified": 1062,
-    "gzipped": 562
+    "bundled": 2088,
+    "minified": 1064,
+    "gzipped": 564
   }
 }
