@@ -5,40 +5,10 @@
 [![coverage status][codecov-image]][codecov-url]
 [![npm downloads][npmd-image]][npmd-url]
 
-> React Telegram login button
-
-## Basic Usage
-
-```jsx
-import React from 'react'
-import { render } from 'react-dom'
-
-render(, document.getElementById('root'))
-```
-
-## Live Examples
-
-- [Basic Usage](https://codesandbox.io/)
-- [API Example](https://codesandbox.io/)
-- [UMD Build (Development)](https://codesandbox.io/)
-- [UMD Build (Production)](https://codesandbox.io/)
-
-## API
-
-**Props**
-
-- `foo` - Something something.
-- `bar` - _Optional_ Something something. Defaults to `null`.
-
-**Example**
-
-```jsx
-```
-
 ## Installation
 
 ```
-$ npm install telegram-login-button --save
+npm install telegram-login-button
 ```
 
 There are also UMD builds available via [unpkg](https://unpkg.com/):
@@ -46,16 +16,35 @@ There are also UMD builds available via [unpkg](https://unpkg.com/):
 - https://unpkg.com/telegram-login-button/dist/telegram-login-button.umd.development.js
 - https://unpkg.com/telegram-login-button/dist/telegram-login-button.umd.production.js
 
-For the non-minified development version, make sure you have already included:
+> React Telegram login button
 
-- [`React`](https://unpkg.com/react/umd/react.development.js)
-- [`ReactDOM`](https://unpkg.com/react-dom/umd/react-dom.development.js)
-- [`PropTypes`](https://unpkg.com/prop-types/prop-types.js)
+## Usage
 
-For the minified production version, make sure you have already included:
+```jsx
+import React from 'react'
+import { render } from 'react-dom'
+import TelegramLoginButton, { TelegramUser } from 'telegram-login-button'
 
-- [`React`](https://unpkg.com/react/umd/react.production.min.js)
-- [`ReactDOM`](https://unpkg.com/react-dom/umd/react-dom.production.min.js)
+render(
+  <TelegramLoginButton
+    botName="test"
+    dataOnauth={(user: TelegramUser) => console.log(user)}
+  />,
+  document.getElementById('root')
+)
+```
+
+## API
+
+**Props**
+
+- `botName` - _Required_ | _string_ | your bot username without @.
+- `dataOnauth` - _Required_ | _function_ | call back on user authentication.
+- `usePic` - _Optional_ | _boolean_ | show user profile alongside button. defaults to false.
+- `className` - _Optional_ | _string_ | extra className to override things. defaults to undefined.
+- `cornerRadius` - _Optional_ | _number_ (in pixel) | radius of the button. defaults to undefined.
+- `requestAccess` - _Optional_ | _boolean_ | to send messages from your bot. defaults to true.
+- `buttonSize` - _Optional_ | _'large'_ or _'medium'_ or _'small'_ | button size. defaults to large.
 
 ## License
 

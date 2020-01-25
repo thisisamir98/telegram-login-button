@@ -15,7 +15,7 @@ interface Props {
   usePic?: boolean
   className?: string
   cornerRadius?: number
-  requestAccess?: string
+  requestAccess?: boolean
   dataOnauth: (user: TelegramUser) => void
   buttonSize?: 'large' | 'medium' | 'small'
 }
@@ -38,7 +38,7 @@ const TelegramLoginButton: React.SFC<Props> = props => {
     buttonSize = 'large',
     dataOnauth,
     cornerRadius,
-    requestAccess = 'write'
+    requestAccess = true
   } = props
 
   useEffect(() => {
@@ -57,7 +57,10 @@ const TelegramLoginButton: React.SFC<Props> = props => {
       script.setAttribute('data-radius', cornerRadius.toString())
     }
 
-    script.setAttribute('data-request-access', requestAccess)
+    if (requestAccess) {
+      script.setAttribute('data-request-access', 'write')
+    }
+
     script.setAttribute('data-userpic', usePic.toString())
     script.setAttribute('data-onauth', 'TelegramLoginWidget.dataOnauth(user)')
     script.async = true
@@ -81,7 +84,7 @@ TelegramLoginButton.propTypes = {
   usePic: PropTypes.bool,
   className: PropTypes.string,
   cornerRadius: PropTypes.number,
-  requestAccess: PropTypes.string,
+  requestAccess: PropTypes.bool,
   dataOnauth: PropTypes.func.isRequired,
   buttonSize: PropTypes.oneOf(['large', 'medium', 'small'])
 }
