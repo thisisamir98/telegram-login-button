@@ -37,22 +37,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "github:bardiarastin/telegram-login-button"
+    "url": "github:thisisamir98/telegram-login-button"
   },
   "keywords": [
     "javascript",
     "react",
     "typescript"
   ],
-  "author": "Bardia Rastin <a.rastin98@gmail.com>",
+  "author": "Amir Ghezelbash <thisisamir98@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "github:bardiarastin/telegram-login-button/issues"
   },
   "homepage": "github:bardiarastin/telegram-login-button",
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": ">16.0.0",
+    "react-dom": ">16.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
