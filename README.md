@@ -40,7 +40,7 @@ render(
 
 - `botName` - _Required_ | _string_ | your bot username without @.
 - `dataOnauth` - _Optional_ | _function_ | call back on user authentication.
-- `dataAuthUrl` - _Optional_ | _string_ | redirect url on user authentication.
+- `dataAuthUrl` - _Optional_ | _string_ | redirect to url on user authentication.
 - `usePic` - _Optional_ | _boolean_ | show user profile alongside button. defaults to false.
 - `className` - _Optional_ | _string_ | extra className to override things. defaults to undefined.
 - `cornerRadius` - _Optional_ | _number_ (in pixel) | radius of the button. defaults to undefined.
