@@ -16,7 +16,8 @@ interface Props {
   className?: string
   cornerRadius?: number
   requestAccess?: boolean
-  dataOnauth: (user: TelegramUser) => void
+  dataOnauth?: (user: TelegramUser) => void
+  dataAuthUrl?: string
   buttonSize?: 'large' | 'medium' | 'small'
 }
 
@@ -28,7 +29,7 @@ declare global {
   }
 }
 
-const TelegramLoginButton: React.SFC<Props> = props => {
+const TelegramLoginButton: React.FunctionComponent<Props> = props => {
   const ref = useRef<HTMLDivElement>(null)
 
   const {
@@ -37,6 +38,7 @@ const TelegramLoginButton: React.SFC<Props> = props => {
     className,
     buttonSize = 'large',
     dataOnauth,
+    dataAuthUrl,
     cornerRadius,
     requestAccess = true
   } = props
@@ -44,8 +46,16 @@ const TelegramLoginButton: React.SFC<Props> = props => {
   useEffect(() => {
     if (ref.current === null) return
 
-    window.TelegramLoginWidget = {
-      dataOnauth: (user: TelegramUser) => dataOnauth(user)
+    if (!!dataAuthUrl === !!dataOnauth) {
+      throw new Error(
+        'One of this props should be defined: dataAuthUrl (redirect URL), dataOnauth (callback fn) should be defined.'
+      )
+    }
+
+    if (dataOnauth !== undefined) {
+      window.TelegramLoginWidget = {
+        dataOnauth: (user: TelegramUser) => dataOnauth(user)
+      }
     }
 
     const script = document.createElement('script')
@@ -62,7 +72,11 @@ const TelegramLoginButton: React.SFC<Props> = props => {
     }
 
     script.setAttribute('data-userpic', usePic.toString())
-    script.setAttribute('data-onauth', 'TelegramLoginWidget.dataOnauth(user)')
+    if (dataAuthUrl !== undefined) {
+      script.setAttribute('data-auth-url', dataAuthUrl)
+    } else {
+      script.setAttribute('data-onauth', 'TelegramLoginWidget.dataOnauth(user)')
+    }
     script.async = true
 
     ref.current.appendChild(script)
@@ -71,6 +85,7 @@ const TelegramLoginButton: React.SFC<Props> = props => {
     buttonSize,
     cornerRadius,
     dataOnauth,
+    dataAuthUrl,
     requestAccess,
     usePic,
     ref
@@ -85,7 +100,8 @@ TelegramLoginButton.propTypes = {
   className: PropTypes.string,
   cornerRadius: PropTypes.number,
   requestAccess: PropTypes.bool,
-  dataOnauth: PropTypes.func.isRequired,
+  dataOnauth: PropTypes.func,
+  dataAuthUrl: PropTypes.string,
   buttonSize: PropTypes.oneOf(['large', 'medium', 'small'])
 }
 
