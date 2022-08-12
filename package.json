@@ -1,5 +1,5 @@
 {
-  "name": "telegram-login-button",
+  "name": "@genki-labs/telegram-login-button",
   "version": "0.0.4",
   "description": "React Telegram login button",
   "main": "dist/index.js",
