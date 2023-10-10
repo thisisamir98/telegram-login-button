@@ -46,7 +46,10 @@ const TelegramLoginButton: React.FC<Props> = ({
   useEffect(() => {
     if (ref.current === null) return
 
-    if (!dataAuthUrl || !dataOnauth) {
+    if (
+      typeof dataOnauth === 'undefined' &&
+      typeof dataAuthUrl === 'undefined'
+    ) {
       throw new Error(
         'One of this props should be defined: dataAuthUrl (redirect URL), dataOnauth (callback fn) should be defined.'
       )
@@ -63,12 +66,6 @@ const TelegramLoginButton: React.FC<Props> = ({
     script.setAttribute('data-telegram-login', botName)
     script.setAttribute('data-size', buttonSize)
 
-    if (typeof dataAuthUrl === 'string') {
-      script.setAttribute('data-auth-url', dataAuthUrl)
-    } else {
-      script.setAttribute('data-onauth', 'TelegramLoginWidget.dataOnauth(user)')
-    }
-
     if (cornerRadius !== undefined) {
       script.setAttribute('data-radius', cornerRadius.toString())
     }
@@ -78,6 +75,13 @@ const TelegramLoginButton: React.FC<Props> = ({
     }
 
     script.setAttribute('data-userpic', usePic.toString())
+
+    if (typeof dataAuthUrl === 'string') {
+      script.setAttribute('data-auth-url', dataAuthUrl)
+    } else {
+      script.setAttribute('data-onauth', 'TelegramLoginWidget.dataOnauth(user)')
+    }
+
     script.async = true
 
     ref.current.appendChild(script)
