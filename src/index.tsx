@@ -18,7 +18,7 @@ interface Props {
   requestAccess?: boolean
   dataOnauth: (user: TelegramUser) => void
   buttonSize?: 'large' | 'medium' | 'small'
-  wrapperStyle?: React.CSSProperties
+  wrapperProps?: React.HTMLProps<HTMLDivElement>
 }
 
 declare global {
@@ -30,7 +30,7 @@ declare global {
 }
 
 const TelegramLoginButton: React.FC<Props> = ({
-  wrapperStyle,
+  wrapperProps,
   usePic = false,
   botName,
   className,
@@ -76,7 +76,7 @@ const TelegramLoginButton: React.FC<Props> = ({
     ref
   ])
 
-  return <div ref={ref} className={className} style={wrapperStyle} />
+  return <div ref={ref} className={className} {...wrapperProps} />
 }
 
 TelegramLoginButton.propTypes = {
@@ -85,7 +85,7 @@ TelegramLoginButton.propTypes = {
   className: PropTypes.string,
   cornerRadius: PropTypes.number,
   requestAccess: PropTypes.bool,
-  wrapperStyle: PropTypes.object,
+  wrapperProps: PropTypes.object,
   dataOnauth: PropTypes.func.isRequired,
   buttonSize: PropTypes.oneOf(['large', 'medium', 'small'])
 }
